@@ -3,17 +3,13 @@ package test;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.ecommerce.DBConnection;
 import com.mysql.cj.protocol.Resultset;
 
@@ -23,7 +19,6 @@ public class swag {
 		
 
 		System.setProperty("webdriver.chrome.driver","chromedriver");
-		//System.setProperty("webdriver.gecko.driver", "geckodriver");
 		
 		
 		WebDriver dr =new ChromeDriver();
@@ -96,13 +91,18 @@ public class swag {
 		
 	
 		String str1="Your order has been dispatched, and will arrive just as fast as the pony can get there!";
-		WebElement check = dr.findElement(By.cssSelector("div[class=complete-text]"));
-		if(str1.equals(check)) {
-			System.out.println("Failed!!");
+		String check = dr.findElement(By.cssSelector("div[class=complete-text]")).getText();
+//		System.out.println(check);
+		
+		String verify ="Your ordered has been dispatched, and will arrive just as fast as the pony can get there!";
+	
+		if (check.equals(verify)) {
+			System.out.println("passed test!!");
 		}
 		else {
-			System.out.println("passed!");
+			System.out.println("failed test!!");
 		}
+		
 	
 	
 	}
